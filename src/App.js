@@ -8,8 +8,13 @@ function App() {
   const [categories, setCategories] = useState([]);
 
   const filterItems = (category) => {
-
-  }
+    if (category == 'all') {
+      setMenuItems(items)
+      return // return from the filterItems functio or use an else-statement for the rest of the code
+    }
+    const newItems = items.filter((item) => item.category === category);
+    setMenuItems(newItems);
+  };
   return (
     <main>
       <section className="menu section">
@@ -17,8 +22,8 @@ function App() {
           <h2>our menu</h2>
           <div className="underline"></div>
         </div>
-        <Categories items = {menuItems}/>
-        <Menu items = {menuItems}/>
+        <Categories filterItems = {filterItems} />
+        <Menu items={menuItems} />
       </section>
     </main>
   );
